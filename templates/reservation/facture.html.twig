@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>
+        Facture d'une réservation voiture
+    </h1>
+    <table>
+        <tr>
+            <th>CIN :</th>
+            <td>{{c.cin }}</td>
+        </tr>
+        <tr>
+            <th>Von et Prenom :</th>
+            <td>{{c.nom }}
+                {{c.prenom}}</td>
+        </tr>
+        <tr>
+            <th>date de naissance :</th>
+            <td>{{c.dateNaiss | date('d-m-Y') }}</td>
+        </tr>
+        <tr>
+            <th>Telephone :</th>
+            <td>{{c.telephone }}</td>
+        </tr>
+        <tr>
+            <th>date de réservation :</th>
+            <td>{{r.dateDebutReservation |date('d-m-Y') }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <h3>
+                    Voiture réservée :
+                </h3>
+                <table>
+                    <tr>
+                        <th>marque:
+                        </th>
+                        <td>{{ v.marque.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>matricule :
+                        </th>
+                        <td>{{ v.matricule }}</td>
+                    </tr>
+                    <tr>
+                        <th>nombre de portes :
+                        </th>
+                        <td>{{ v.nbPorte }}</td>
+                    </tr>
+                    <tr>
+                        <th>nombre de passagers :
+                        </th>
+                        <td>{{ v.nbPassager }}</td>
+                    </tr>
+                    <tr>
+                        <th>capacite de bagage :
+                        </th>
+                        <td>{{ v.capaciteBagage }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kilo Metrage:
+                        </th>
+                        <td>{{ v.capaciteBagage }}</td>
+                    </tr>
+                    <tr>
+                        <th>couleur :
+                        </th>
+                        <td>{{ v.couleur }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Prix :
+                        </th>
+                        <td>{{ pt }}
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </div>
+{% endblock %}

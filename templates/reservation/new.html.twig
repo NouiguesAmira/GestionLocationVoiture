@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reservation
+{% endblock %}
+
+{% block body %}
+    <h1>
+        Reservation :</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <button class="btn">{{ button_label|default('Valide') }}</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('reservation_index') }}">back to list</a>
+{% endblock %}

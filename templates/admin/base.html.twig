@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+                {{ 'GLDRA - Admin'|trans }}
+            {% endblock %}
+        </title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+
+        {% block stylesheets %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ path('admin.marque.list') }}">{{ 'GLDRA Admin'|trans }}</a>
+                </div>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <div>
+                                    <a href="{{ path('voiture.list') }}" class="btn btn-default navbar-btn">{{ ' Acceuil '|trans }}</a>
+                                </div>
+                            </li>
+                        {% endif %}
+
+
+                        {% if app.user %}
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    {% set currentRouteName = app.request.get('_route') %}
+
+                    <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+                        <li role="presentation" {% if currentRouteName starts with 'admin.marque.' %} class="active" {% endif %}>
+                            <a href="{{ path('admin.marque.list') }}">{{ 'Marques'|trans }}</a>
+                        </li>
+
+                        <li role="presentation" {% if currentRouteName starts with 'admin.voiture.' %} class="active" {% endif %}>
+                            <a href="{{ path('admin.voiture.list') }}">{{ 'Voitures'|trans }}</a>
+                        </li>
+
+                        <li role="presentation" {% if currentRouteName starts with 'admin.marque.' %} {% endif %}>
+                            <a href="{{ path('reservation_index') }}">{{ 'Reservation'|trans }}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-10">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

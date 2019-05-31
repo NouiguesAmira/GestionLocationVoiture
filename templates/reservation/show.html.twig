@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation
+{% endblock %}
+
+{% block body %}
+    <h1>Reservation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation.id }}</td>
+            </tr>
+            <tr>
+                <th>DateDebutReservation</th>
+                <td>{{ reservation.dateDebutReservation ? reservation.dateDebutReservation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NbJours</th>
+                <td>{{ reservation.nbJours }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ reservation.lieu }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('reservation_index') }}">back to list</a>
+
+    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+
+{% endblock %}

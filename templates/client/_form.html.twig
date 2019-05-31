@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<input type="hidden" name="idv" value="{{ idv }}">
+
+<button class="btn">{{ button_label|default('Suivant') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,62 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr class="active">
+                <th>{{ 'Matricule'|trans }}</th>
+                <th>{{ 'Portes'|trans }}</th>
+                <th>{{ 'Passagers'|trans }}</th>
+                <th>{{ 'Capacite'|trans }}</th>
+                <th>{{ 'KiloMetrage'|trans }}</th>
+                <th>{{ 'Couleur'|trans }}</th>
+                <th>{{ 'prix'|trans }}</th>
+                <th>{{ 'Disponible'|trans }}</th>
+
+                <th>{{ 'Actions'|trans }}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for voiture in voitures %}
+                <tr>
+                    <td>{{ voiture.matricule }}</td>
+                    <td>{{ voiture.nbPorte }}</td>
+                    <td>{{ voiture.nbPassager }}</td>
+                    <td>{{ voiture.capaciteBagage }}</td>
+                    <td>{{ voiture.kiloMetrage }}</td>
+                    <td>{{ voiture.couleur }}</td>
+                    <td>{{ voiture.prix }}</td>
+                    <td>
+                        {% if voiture.disponible %}
+                            <span aria-hidden="true" class="glyphicon glyphicon-ok"></span>
+                        {% else %}
+                            <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                        {% endif %}
+                    </td>
+                    <td class="text-nowrap">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="{{ path('admin.voiture.edit', {id: voiture.id}) }}" class="btn btn-default">{{ 'Edit'|trans }}</a>
+                            </li>
+
+                            <li>
+                                <form method="post" action="{{ path('admin.voiture.delete', {id: voiture.id}) }}" onsubmit="return confirm('{{ 'Are you sure you want to delete this item?'|trans }}');">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ voiture.id) }}">
+                                    <button class="btn btn-danger">{{ 'Delete'|trans }}</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation text-center">
+        {{ knp_pagination_render(voitures) }}
+    </div>
+
+    <a href="{{ path('admin.voiture.create') }}" class="btn btn-success">{{ 'Create new'|trans }}</a>
+{% endblock %}

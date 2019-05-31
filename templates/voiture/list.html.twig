@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <tbody>
+
+        {% for v in voitures %}
+            {% if v.disponible == 1 %}
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <img class="media-object" src="{{ asset( v.getLogoPath() ) }}" style="width:250px; height:250px;">
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <table>
+                                    <tr>
+                                        <td>Prix :
+                                        </td>
+                                        <td>{{ v.prix }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>matricule :
+                                        </td>
+                                        <td>{{ v.matricule }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>nombre de portes :
+                                        </td>
+                                        <td>{{ v.nbPorte }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>nombre de passagers :
+                                        </td>
+                                        <td>{{ v.nbPassager }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>capacite de bagage :
+                                        </td>
+                                        <td>{{ v.capaciteBagage }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kilo Metrage:
+                                        </td>
+                                        <td>{{ v.KiloMetrage }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>couleur :
+                                        </td>
+                                        <td>{{ v.couleur }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>marque:
+                                        </td>
+                                        <td>{{ v.marque.name }}</td>
+                                    </tr>
+
+
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-xs-12 col-md-2">
+                            <form method="post" action="{{ path('client_new') }}">
+                                <input type="hidden" name="idv" value="{{ v.id }}">
+                                <button class="btn btn-primary btn-lg">{{ 'Reservez' }}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {% endif %}
+    {% endfor %}
+</tbody>{% endblock %}

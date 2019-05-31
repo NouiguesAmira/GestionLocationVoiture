@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'Voitures in the %marque% marque'|trans({'%marque%': marque.name}) }}
+{% endblock %}
+
+{% block body %}
+   
+    <h4>{{ marque.name }}</h4>
+
+    {% include 'voiture/table.html.twig' with {'voitures': disponibleVoitures} only %}
+
+    <div class="navigation text-center">
+        {{ knp_pagination_render(disponibleVoitures) }}
+    </div>
+{% endblock %}
